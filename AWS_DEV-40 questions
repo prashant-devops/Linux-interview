@@ -1,0 +1,148 @@
+1. What is the role of IAM roles and policies?
+IAM Roles:
+IAM roles grant temporary permissions to AWS services or users. They are assumed by entities like EC2 instances, Lambda functions, or users.
+
+IAM Policies:
+Policies define permissions. They can be attached to users, groups, or roles to grant or restrict access to AWS resources.
+
+2. Can you explain the Terraform plan and its purpose?
+The terraform plan command provides an execution plan before applying changes. It shows what resources will be created, modified, or destroyed without making actual changes.
+
+3. What is AWS Lambda, and how does it work?
+AWS Lambda is a serverless compute service that runs code in response to events. It executes functions without provisioning or managing servers.
+
+4. How do you invoke a Lambda function, and where do you configure it?
+You can invoke a Lambda function:
+
+Manually via the AWS CLI, SDK, or Console
+Event-driven via S3, DynamoDB, SNS, API Gateway, etc.
+Configuration is done in the AWS Lambda console, AWS CLI, or Terraform.
+
+5. Can you describe how Lambda handles scaling and event-based invocations?
+Scaling: Lambda scales automatically by running multiple instances in parallel.
+Event-based invocations: Triggers from services like S3, DynamoDB, or API Gateway invoke the function.
+6. What is Amazon CloudWatch, and have you configured any custom metrics?
+Amazon CloudWatch monitors AWS resources and applications. Yes, you can configure custom metrics using the AWS SDK, CLI, or CloudWatch Agent.
+
+7. What metrics are available on your CloudWatch dashboard?
+Common metrics include:
+
+EC2: CPU utilization, disk I/O, network traffic
+Lambda: Invocation count, duration, error rate
+S3: Request count, bytes transferred
+8. How do you configure CPU utilization on your CloudWatch dashboard?
+Go to CloudWatch > Dashboards
+Click Add widget > Select Metrics
+Choose EC2 > CPUUtilization
+Set thresholds for alerts (e.g., if CPU > 80%)
+9. How do you attach an SSL certificate to an S3 bucket?
+S3 itself doesn’t support SSL directly, but you can:
+
+Use CloudFront with an SSL certificate from AWS Certificate Manager (ACM).
+Attach the certificate in Application Load Balancer (ALB) if serving via EC2.
+10. What type of encryption have you implemented in your project?
+S3: Server-side encryption (SSE-S3, SSE-KMS)
+RDS: At-rest encryption using AWS KMS
+EBS: Volume encryption
+IAM Secrets Manager: Encrypted credentials
+11. If an S3 bucket has a read-only policy, can you modify objects in the bucket?
+No, a read-only policy only allows viewing objects, not modifications.
+
+12. Why did you choose Terraform over Boto3 for infrastructure provisioning?
+Terraform: Declarative, maintains infrastructure state, easy rollback
+Boto3: Procedural, requires custom scripting
+Terraform is better for managing entire infrastructure, whereas Boto3 is good for automation tasks.
+13. What is a Content Delivery Network (CDN), and how does it work?
+A CDN distributes content across edge locations to improve latency and speed. AWS CloudFront is a CDN that caches content closer to users.
+
+14. Have you created a Jenkins pipeline for your project?
+Yes, Jenkins pipelines automate CI/CD workflows for build, test, and deployment.
+
+15. How do you attach policies to IAM users, either individually or by group?
+You can attach policies:
+
+Individually via the IAM console, CLI, or Terraform.
+By Group (recommended) so users inherit policies.
+16. What type of deployment strategies are you using in your project?
+Common deployment strategies:
+
+Rolling deployment
+Blue/Green deployment
+Canary deployment
+Serverless deployment (Lambda)
+17. Have you used any tools to create customized Amazon Machine Images (AMIs)?
+Yes, Packer and EC2 Image Builder are used to create AMIs.
+
+18. What is connection draining, and how does it work?
+Connection draining ensures active connections complete before terminating EC2 instances behind a load balancer.
+
+19. How does an Elastic Load Balancer (ELB) distribute traffic?
+ELB distributes traffic based on:
+
+Round Robin (default for ALB/NLB)
+Least Connections
+Target-based routing
+20. What is auto-scaling, and how does it work?
+Auto Scaling dynamically adjusts the number of EC2 instances based on demand.
+
+21. Can you describe the different types of Load Balancers and provide examples?
+ALB (Application Load Balancer): Routes traffic based on URLs
+NLB (Network Load Balancer): Routes traffic based on IPs
+CLB (Classic Load Balancer): Older, less flexible
+22. What is the maximum runtime for a Lambda function?
+15 minutes.
+
+23. What is the maximum memory size for a Lambda function?
+10 GB.
+
+24. How can you increase the runtime for a Lambda function?
+Adjust the timeout setting in the Lambda configuration.
+
+25. What automations have you performed using Lambda in your project?
+S3 Event Processing
+Auto-healing EC2
+Security compliance monitoring
+26. Why did you choose Terraform over Boto3 for infrastructure provisioning?
+(Same as Q12) Terraform provides better state management and versioning.
+
+27. What modules have you used in your Lambda function?
+Common modules include boto3, pandas, requests, json, logging.
+
+28. Have you created an SNS topic for your project?
+Yes, for sending notifications to email, SMS, or Lambda triggers.
+
+29. If you've exhausted IP addresses in your VPC, how would you provision new resources?
+Expand CIDR block in the VPC.
+Create a new subnet in another availability zone.
+30. What is Groovy, and how is it used in Jenkins?
+Groovy is a scripting language used in Jenkins Pipelines.
+
+31. Why do you use Groovy in Jenkins, and where do you save Jenkins files?
+Used for defining CI/CD pipelines. Jenkinsfiles are stored in repositories (GitHub, GitLab).
+
+32. What is Ansible, and what is its purpose?
+Ansible is an IaC tool for configuration management and automation.
+
+33. What language do you use in Ansible?
+YAML.
+
+34. Where do you run Terraform code, remotely or locally?
+Both, using Terraform Cloud, AWS CodeBuild, or local execution.
+
+35. What is the purpose of access keys and secret keys in AWS?
+They authenticate API requests.
+
+36. What are Terraform modules, and have you used any in your project?
+Reusable Terraform configurations. Example: VPC module, S3 module.
+
+37. What environments have you set up for your project?
+Dev, Staging, Production.
+
+38. Do you use the same AWS account for all environments?
+No, usually separate accounts are used for security.
+
+39. Do you have separate Jenkins servers for each environment?
+Yes, or use a single Jenkins server with different pipelines.
+
+40. Where do you write and save your Lambda function code?
+In AWS Lambda Console, S3, or Git repositories.
